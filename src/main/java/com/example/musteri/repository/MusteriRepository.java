@@ -10,7 +10,7 @@ import com.example.musteri.entity.Musteri;
 @Repository
 public interface MusteriRepository extends JpaRepository<Musteri, Integer> {
 
-	Optional<Musteri> findById(Long id);
+	Optional<Musteri> findById(int id);
 
 	Optional<Musteri> findByAdSoyad(String adSoyad);
 

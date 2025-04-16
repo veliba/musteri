@@ -27,7 +27,7 @@ public class MusteriController {
 	}
 
 	@GetMapping("/kaydet")
-	public String kaydet(@RequestParam(name = "id", required = false) Long id, Model model,
+	public String kaydet(@RequestParam(name = "id", required = false) Integer id, Model model,
 			RedirectAttributes redirectAttributes) {
 		if (id != null) {
 			Musteri musteri = musteriRepository.findById(id).orElse(null);

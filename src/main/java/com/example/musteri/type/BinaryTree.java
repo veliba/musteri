@@ -13,7 +13,11 @@ public class BinaryTree<T extends Comparable<T>> {
 	private Node<T> root;
 
 	public void add(T value) {
-		root = addRecursive(root, value);
+		if (root == null) {
+			root = new Node<T>(value);
+		} else {
+			addRecursive(root, value);
+		}
 	}
 
 	private Node<T> addRecursive(Node<T> current, T value) {
@@ -23,7 +27,7 @@ public class BinaryTree<T extends Comparable<T>> {
 
 		if (value.compareTo(current.getValue()) < 0) {
 			current.setLeft(addRecursive(current.getLeft(), value));
-		} else if (value.compareTo(value) > 0) {
+		} else if (value.compareTo(current.getValue()) > 0) {
 			current.setRight(addRecursive(current.getRight(), value));
 		} else {
 			// value already exists

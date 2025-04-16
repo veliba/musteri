@@ -22,7 +22,7 @@ import com.example.musteri.repository.MusteriRepository;
 import com.example.musteri.type.Uyruk;
 
 @ExtendWith(MockitoExtension.class)
-class MusteriControllerTests{
+class MusteriControllerTests {
 
     @Mock
     private MusteriRepository musteriRepository;
@@ -44,11 +44,11 @@ class MusteriControllerTests{
 
     @Test
     void kaydetShouldRedirectWhenMusteriNotFound() {
-        when(musteriRepository.findById(1L)).thenReturn(Optional.empty());
+        when(musteriRepository.findById(1)).thenReturn(Optional.empty());
 
         RedirectAttributes redirectAttributes = new RedirectAttributesModelMap();
         Model model = new ConcurrentModel();
-        String viewName = musteriController.kaydet(1L, model, redirectAttributes);
+        String viewName = musteriController.kaydet(1, model, redirectAttributes);
 
         assertEquals("redirect:/", viewName);
         assertEquals("Müşteri bulunamadı.", redirectAttributes.getFlashAttributes().get("error"));
@@ -58,11 +58,11 @@ class MusteriControllerTests{
     void kaydetShouldReturnEditViewWithExistingMusteri() {
         Musteri musteri = new Musteri();
         musteri.setId(1);
-        when(musteriRepository.findById(1L)).thenReturn(Optional.of(musteri));
+        when(musteriRepository.findById(1)).thenReturn(Optional.of(musteri));
 
         Model model = new ConcurrentModel();
         RedirectAttributes redirectAttributes = new RedirectAttributesModelMap();
-        String viewName = musteriController.kaydet(1L, model, redirectAttributes);
+        String viewName = musteriController.kaydet(1, model, redirectAttributes);
 
         assertEquals("musteriEdit", viewName);
         assertEquals(musteri, model.getAttribute("musteri"));
