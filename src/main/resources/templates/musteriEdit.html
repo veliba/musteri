@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Müşteri</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+	<div class="container mt-3">
+		<h1>Müşteri</h1>
+		<hr />
+		<form th:action="@{/kaydet}" th:object="${musteri}" method="post">
+		
+		    <input type="hidden" th:if="${musteri.id}" th:field="*{id}" />
+			<table class="table table-dark">
+				<tbody>
+					<tr>
+						<td>Adı Soyadı</td>
+						<td><input type="text" class="form-control" th:field="*{adSoyad}" placeholder="Adı Soyadı" required autofocus /></td>
+					</tr>
+					<tr>
+						<td>Uyruğu</td>
+						<td><select class="form-control" th:field="*{uyruk}" required onchange="return uyrukDegisti();">
+								<option value="TC">TC</option>
+								<option value="YABANCI">YABANCI</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td>TCKNO</td>
+						<td><input type="text" class="form-control" th:field="*{tck}" placeholder="TCKNO" /></td>
+					</tr>
+					<tr>
+						<td>GSM</td>
+						<td><input type="text" class="form-control" th:field="*{gsm}" placeholder="05051112233" /></td>
+					</tr>
+					<tr>
+						<td colspan="2"><button class="btn btn-primary" type="submit">Kaydet</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+
+		<div th:if="${error}" id="formAlert" class="alert alert-danger">
+			<a class="close">×</a> <span th:text="${error}">Error message</span>
+		</div>
+	</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+	$(document).ready(function() {
+		uyrukDegisti();
+
+		$(".alert").find(".close").on("click", function(e) {
+			// Find all elements with the "alert" class, get all descendant elements with the class "close", and bind a "click" event handler
+			e.stopPropagation(); // Don't allow the click to bubble up the DOM
+			e.preventDefault(); // Don't let any default functionality occur (in case it's a link)
+			$(this).closest(".alert").slideUp(400); // Hide this specific Alert
+		});
+	});
+
+	function uyrukDegisti() {
+		var uyruk = document.querySelector('select[name="uyruk"]').value;
+		var tck = document.querySelector('input[name="tck"]')
+		tck.disabled = (uyruk == "YABANCI");
+	}
+</script>
+
+</html>
