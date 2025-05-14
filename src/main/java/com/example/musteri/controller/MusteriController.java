@@ -80,4 +80,19 @@ public class MusteriController {
 		return "redirect:/";
 	}
 
+	@GetMapping("/sil")
+	public String sil(@RequestParam(name = "id", required = true) Integer id, Model model,
+			RedirectAttributes redirectAttributes) {
+		if (id != null) {
+			Musteri musteri = musteriRepository.findById(id).orElse(null);
+			if (musteri == null) {
+				redirectAttributes.addFlashAttribute("error", "Müşteri bulunamadı.");
+				return "redirect:/";
+			}
+			musteriRepository.deleteById(id);
+		}
+		redirectAttributes.addFlashAttribute("info", "Müşteri silindi.");
+		return "redirect:/";
+	}
+
 }
