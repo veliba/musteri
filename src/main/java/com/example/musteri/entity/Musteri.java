@@ -25,14 +25,14 @@ public class Musteri {
 
 	@Column(name = "ADSOYAD", nullable = false)
 	private String adSoyad;
-	
+
 	@Column(nullable = false)
-    @Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)
 	private Uyruk uyruk;
-	
+
 	@Column
 	private Long tck;
-	
+
 	@Column
 	private Long gsm;
 
