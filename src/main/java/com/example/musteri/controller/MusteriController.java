@@ -33,7 +33,7 @@ public class MusteriController {
 			Musteri musteri = musteriRepository.findById(id).orElse(null);
 			if (musteri == null) {
 				redirectAttributes.addFlashAttribute("error", "Müşteri bulunamadı.");
-				return "redirect:/";
+				return "redirect:";
 			}
 			model.addAttribute("musteri", musteri);
 		} else {
@@ -46,7 +46,7 @@ public class MusteriController {
 	public String saveOrUpdate(Model model, @ModelAttribute Musteri musteri, RedirectAttributes redirectAttributes) {
 		if (musteri == null) {
 			redirectAttributes.addFlashAttribute("error", "Müşteri bilgileri eksik.");
-			return "redirect:/";
+			return "redirect:";
 		}
 		if (Strings.isBlank(musteri.getAdSoyad())) {
 			model.addAttribute("error", "Ad Soyad boş olamaz.");
@@ -77,7 +77,7 @@ public class MusteriController {
 
 		musteriRepository.save(musteri);
 		redirectAttributes.addFlashAttribute("info", "Müşteri kaydedildi.");
-		return "redirect:/";
+		return "redirect:";
 	}
 
 	@GetMapping("/sil")
@@ -87,12 +87,12 @@ public class MusteriController {
 			Musteri musteri = musteriRepository.findById(id).orElse(null);
 			if (musteri == null) {
 				redirectAttributes.addFlashAttribute("error", "Müşteri bulunamadı.");
-				return "redirect:/";
+				return "redirect:";
 			}
 			musteriRepository.deleteById(id);
 		}
 		redirectAttributes.addFlashAttribute("info", "Müşteri silindi.");
-		return "redirect:/";
+		return "redirect:";
 	}
 
 }

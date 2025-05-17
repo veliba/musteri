@@ -51,7 +51,7 @@ class MusteriControllerTests {
         Model model = new ConcurrentModel();
         String viewName = musteriController.kaydet(1, model, redirectAttributes);
 
-        assertEquals("redirect:/", viewName);
+        assertEquals("redirect:", viewName);
         assertEquals("Müşteri bulunamadı.", redirectAttributes.getFlashAttributes().get("error"));
     }
 
@@ -65,7 +65,7 @@ class MusteriControllerTests {
         RedirectAttributes redirectAttributes = new RedirectAttributesModelMap();
         String viewName = musteriController.kaydet(1, model, redirectAttributes);
 
-        assertEquals("redirect:/", viewName);
+        assertEquals("redirect:", viewName);
 //        assertEquals(musteri, model.getAttribute("musteri"));
     }
 
@@ -116,7 +116,7 @@ class MusteriControllerTests {
         RedirectAttributes redirectAttributes = new RedirectAttributesModelMap();
         String viewName = musteriController.saveOrUpdate(model, musteri, redirectAttributes);
 
-        assertEquals("redirect:/", viewName);
+        assertEquals("redirect:", viewName);
         assertEquals("Müşteri kaydedildi.", redirectAttributes.getFlashAttributes().get("info"));
     }
 
@@ -194,7 +194,7 @@ class MusteriControllerTests {
         RedirectAttributes redirectAttributes = new RedirectAttributesModelMap();
         String viewName = musteriController.saveOrUpdate(model, null, redirectAttributes);
 
-        assertEquals("redirect:/", viewName);
+        assertEquals("redirect:", viewName);
         assertEquals("Müşteri bilgileri eksik.", redirectAttributes.getFlashAttributes().get("error"));
     }
 }

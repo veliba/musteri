@@ -13,6 +13,12 @@ public class Util {
 		// Prevent instantiation
 	}
 
+	/**
+	 * Sorts an array using the bubble sort algorithm.
+	 *
+	 * @param arr the array to be sorted
+	 * @return the sorted array
+	 */
 	public static int[] bubleSort(int[] arr) {
 		int n = arr.length;
 		for (int i = 0; i < n - 1; i++) {
@@ -29,6 +35,12 @@ public class Util {
 		return arr;
 	}
 
+	/**
+	 * Sorts an array using the tree sort algorithm.
+	 *
+	 * @param arr the array to be sorted
+	 * @return a list containing the sorted elements
+	 */
 	public static List<Integer> treeSort(int[] arr) {
 		BinaryTree<Integer> tree = new BinaryTree<>();
 		for (int i : arr) {
@@ -38,6 +50,13 @@ public class Util {
 		return tree.toSortedList();
 	}
 
+	/**
+	 * Gets the value of a property from an object using reflection.
+	 *
+	 * @param o    the object from which to get the property
+	 * @param prop the name of the property
+	 * @return the value of the property
+	 */
 	public static Object getProp(Object o, String prop) {
 		if (o == null) {
 			throw new IllegalArgumentException("Target object cannot be null");
@@ -56,6 +75,12 @@ public class Util {
 		}
 	}
 
+	/**
+	 * Gets a sorted list from a list of comparable elements.
+	 *
+	 * @param l the list to be sorted
+	 * @return a sorted list
+	 */
 	public static <T extends Comparable<T>> List<T> getSortedList(List<T> l) {
 		Set<T> s = new TreeSet<>(new Comparator<T>() {
 
@@ -72,6 +97,13 @@ public class Util {
 		return new ArrayList<>(s);
 	}
 
+	/**
+	 * Gets a sorted list from a list of elements based on a specified property.
+	 *
+	 * @param l               the list to be sorted
+	 * @param comparableField the name of the property to sort by
+	 * @return a sorted list
+	 */
 	public static <K, V extends Comparable<V>> List<K> getSortedList(List<K> l, final String comparableField) {
 		Set<K> s = new TreeSet<>(new Comparator<K>() {
 
